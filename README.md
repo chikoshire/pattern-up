@@ -1,68 +1,38 @@
 # Pattern Up
 
-**AI SEO / GEO content-automation SaaS.**
+**AI SEO / GEO content-automation SaaS.** Create, post and engage everywhere — on autopilot.
 
-Pattern Up helps teams generate and operate search- and answer-engine-oriented content systems — production-minded automation with a clean separation from throwaway builders.
+> Product: [patternup.io](https://patternup.io)
 
-> Product app: [pattern-up-app.vercel.app](https://pattern-up-app.vercel.app)
+## Plans (binding)
 
----
+| Plan | Price | Notes |
+|------|-------|-------|
+| Signal | $29/mo | 1 brand, drafts only, no X link posts, 10 searches/article |
+| Compound | $99/mo | Homepage tier, approved API send, X link posts capped at 8/mo |
+| Network | $299/mo | Up to 5 brands, programmatic + exchange |
+| Extra brand | $49/mo | Compound add-on |
 
-## Marketing & public surfaces
+Early access stays free until `BILLING_ENABLED` is flipped in `src/lib/plans.ts`. No $10 publishing plan. No $499 service SKU.
 
-| Surface | URL |
-| --- | --- |
-| **Product application** | [pattern-up-app.vercel.app](https://pattern-up-app.vercel.app) |
-| **Studio** | [tuxxagency.com](https://tuxxagency.com) |
-| **Mustard Seed Group** | [mustardseed.group](https://mustardseed.group) |
-| **Founder** | [chikoshire.com](https://chikoshire.com) |
+## This repository
 
-> Primary public product URL today is the application surface above; a dedicated marketing domain can be added here when it ships.
+Public marketing previously lived here alone. Application plan-limits + usage UI now land in-repo:
 
----
+- `src/lib/plans.ts` — catalog, caps, hard enforcement
+- `src/pages/UsagePage.tsx` — `/app/usage` so Signal cannot silently look like Compound
+- `internal/repo-map.md` (agent store) — map of live private app vs brief
 
-## The idea
+### Develop
 
-SEO tools either:
-
-- Dump generic articles, or  
-- Require heavy ops to stay competitive on **search + generative engine** surfaces  
-
-Pattern Up targets **automation with operational discipline** — content systems you can actually run, migrate, and own.
-
-## Product pillars
-
-| Pillar | Detail |
-| --- | --- |
-| **SEO + GEO** | Content oriented to classic search and answer engines |
-| **Automation** | Pipelines for generation, structuring, and publishing ops |
-| **Production readiness** | Migration off disposable builders; dedicated backend ownership |
-| **Competitor-aware** | Parity goals against modern content-automation SaaS |
-
-## Shape
-
-```text
-Brief / keywords → Generation & structure → Review gates → Publish / distribute → Measure
+```bash
+npm install
+npm run test
+npm run dev
 ```
 
-## What is public vs private
+Open `/app/usage` for the usage page.
 
-| Public | Private |
-| --- | --- |
-| This showcase + app URL | Application source & customer data |
-| Product narrative | API keys, CMS credentials, corpora |
+### Stack match
 
-## Status
-
-In progress — production readiness, backend ownership, and competitor-parity workstreams active.
-
-## Links
-
-- [pattern-up-app.vercel.app](https://pattern-up-app.vercel.app)  
-- [tuxxagency.com](https://tuxxagency.com)  
-- [chikoshire.com](https://chikoshire.com)  
-- [mustardseed.group](https://mustardseed.group)
-
----
-
-<sub>Showcase repository — source code is private by design.</sub>
+Vite + React + TypeScript, aligned with the live Pattern Up SPA. Wire `usage_counters` + Stripe subscription to replace the demo workspace state in `src/lib/usage.ts` when the private app source is linked.
